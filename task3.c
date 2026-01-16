@@ -79,13 +79,13 @@ int is_chain_valid(Block *head) {
         calculate_hash(current, recalculated_hash);
 
         if (strcmp(current->hash, recalculated_hash) != 0) {
-            printf("❌ Block %d has invalid hash!\n", current->index);
+            printf(" Block %d has invalid hash!\n", current->index);
             return 0;
         }
 
         if (previous != NULL) {
             if (strcmp(current->prev_hash, previous->hash) != 0) {
-                printf("❌ Block %d previous hash mismatch!\n", current->index);
+                printf(" Block %d previous hash mismatch!\n", current->index);
                 return 0;
             }
         }
@@ -107,14 +107,14 @@ int main() {
 
     printf("\nChecking chain before tampering...\n");
     if (is_chain_valid(chain))
-        printf("✅ Chain is valid\n");
+        printf(" Chain is valid\n");
 
-    printf("\n⚠️ Tampering with Block 1...\n");
+    printf("\n Tampering with Block 1...\n");
     strcpy(chain->next->data, "Alice pays Bob 1000");
 
     printf("\nChecking chain after tampering...\n");
     if (!is_chain_valid(chain))
-        printf("🚨 Chain is broken!\n");
+        printf(" Chain is broken!\n");
 
     return 0;
 }
